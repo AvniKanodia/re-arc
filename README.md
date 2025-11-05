@@ -1,4 +1,68 @@
-# re-arc
+# re-arc: Generalized Puzzle Generator for AGI Benchmarks
+
+A principled system for generating genuinely complex and interesting ARC-style puzzles based on computational hardness, semantic coherence, and emergence.
+
+## 🚀 Quick Start
+
+```python
+from puzzle_generator import generate_puzzle_dataset, GenerationStrategy
+
+# Generate 10 puzzles
+dataset = generate_puzzle_dataset(
+    num_puzzles=10,
+    strategy=GenerationStrategy.HYBRID,
+    output_path="puzzles.json"
+)
+
+# View first puzzle
+puzzle, verification = dataset[0]
+print(f"Difficulty: {verification.difficulty.value}")
+print("Training example:")
+print(puzzle.train_pairs[0][0])  # Input
+print(puzzle.train_pairs[0][1])  # Output
+```
+
+## 📦 Installation
+
+```bash
+git clone https://github.com/AvniKanodia/re-arc.git
+cd re-arc
+pip install -r requirements.txt
+
+# Run basic tests
+python test_basic.py
+
+# Run examples
+python examples.py
+```
+
+## 🎯 Features
+
+- **Multiple Generation Strategies**: Constraint-based, cellular automata, hybrid, and hardness embedding
+- **Semantic Priors**: 15+ human-interpretable concepts (symmetry, object tracking, color consistency, etc.)
+- **Domain-Specific Language**: Composable transformations with 30+ primitives
+- **Automatic Difficulty Calibration**: "Goldilocks zone" filtering rejects puzzles that are too easy or too hard
+- **Adversarial Filtering**: Prevents pattern-matching solutions
+- **Comprehensive DSL**: Geometric, color, object, spatial, logical, and cellular automata transformations
+
+## 📊 System Architecture
+
+```
+Semantic Priors → Constraint System → Transformation Search
+       ↓                                      ↓
+Input Generation ← ← ← ← ← ← ← ← ← ← Apply Transform
+       ↓
+Program Synthesis Verification → Filter → Valid Puzzle
+```
+
+## 📚 Documentation
+
+- **[USAGE_GUIDE.md](USAGE_GUIDE.md)**: Complete usage examples and recipes
+- **[DOCUMENTATION.md](DOCUMENTATION.md)**: Technical architecture and API reference
+- **[examples.py](examples.py)**: 9 runnable examples demonstrating all features
+
+## 🧩 What Makes This Different?
+
 Based on my research and analysis of the ARC benchmark and puzzle generation literature, here's my thinking on creating a generalized puzzle generation system that produces genuinely complex and interesting puzzles:
 The Core Challenge You've Identified
 You're right to be concerned. RE-ARC reverse-engineers each of the 400 ARC training tasks individually, creating a separate generator for each one arXiv, which is the opposite of general. ARC-AGI-1 was undermined by brute-force algorithms that exhaustively searched combinations of primitive operations, reducing its diagnostic value for AGI research Kevin. The tension is real: too general = predictable patterns that brute force can exploit; too specific = you're just hand-crafting puzzles.

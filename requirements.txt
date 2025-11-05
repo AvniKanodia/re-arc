@@ -1,0 +1,13 @@
+# Core dependencies for re-arc puzzle generator
+numpy>=1.21.0
+scipy>=1.7.0
+
+# Optional: for advanced constraint solving (future enhancement)
+# z3-solver>=4.8.0
+
+# Development dependencies
+pytest>=7.0.0
+pytest-cov>=3.0.0
+
+# For type checking (optional)
+mypy>=0.950
